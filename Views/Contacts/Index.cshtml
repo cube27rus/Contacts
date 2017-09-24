@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Contacts.Models.Contact>
+
+@{
+    ViewBag.Title = "Список контактов";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<div>
+    <h4>Сортировать по:</h4>
+    <div >
+        <span>@Html.ActionLink("Имя", "Index", new { sortOrder = ViewBag.NameSort })</span>
+        <span>@Html.ActionLink("Компания", "Index", new { sortOrder = ViewBag.CompanySort })</span>
+        <span>@Html.ActionLink("Телефон", "Index", new { sortOrder = ViewBag.TelephoneSort })</span>        
+    </div>
+</div>  
+<hr />
+        
+ 
+<p>
+    @Html.ActionLink("Create New", "Create", new { } , new { @class = "btn btn-success" })
+</p>
+  
+
+
+<div id="contacts">
+    @foreach (var item in Model)
+    {
+        <div class="contact inline-block">
+            <div class="itemContact">
+                <span>@Html.DisplayNameFor(model => model.Name) :</span>
+                @Html.DisplayFor(modelItem => item.Name)
+            </div>
+            <div>
+                <span>@Html.DisplayNameFor(model => model.Surname) :</span>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </div>
+            <div>
+                <span>@Html.DisplayNameFor(model => model.Patronymic) :</span>
+                @Html.DisplayFor(modelItem => item.Patronymic)
+            </div>
+            <div>
+                <span>@Html.DisplayNameFor(model => model.Telephone) :</span>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </div>
+            <div>
+                <span>@Html.DisplayNameFor(model => model.Adress) :</span>
+                @Html.DisplayFor(modelItem => item.Adress)
+            </div>
+            <div>
+                <span>@Html.DisplayNameFor(model => model.Email) :</span>
+                @Html.DisplayFor(modelItem => item.Email)
+            </div>
+            <div>
+                <span>@Html.DisplayNameFor(model => model.Info) :</span>
+                @Html.DisplayFor(modelItem => item.Info)
+            </div>
+            <div>
+                <span>@Html.DisplayNameFor(model => model.Organ) :</span>
+                @Html.DisplayFor(modelItem => item.Organ.Organisation)
+            </div>
+
+
+            <div>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id },new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    }
+</div>

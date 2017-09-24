@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Contacts.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<ul>    
+
+    @foreach (var item in Model)
+    {
+        <li>@item.Id</li>
+        <li>@item.Email</li>
+        <li>@item.UserName</li>
+        foreach (var item2 in item.Roles)
+        {
+            <li>@item2.UserId</li>
+        }
+
+        <li>@item.Logins</li>
+    }
+</ul>
+
+

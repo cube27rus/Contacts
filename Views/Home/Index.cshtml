@@ -1,0 +1,13 @@
+﻿@model List<string>
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Вы состоите в группах:</h3>
+
+    @foreach (var item in Model)
+    {
+        <h4>@item.ToString()</h4>
+    }
